@@ -114,7 +114,7 @@ public class ArticleListActivity extends ActionBarActivity implements
         mRecyclerView.setAdapter(null);
     }
 
-    // ------------------- adapter classes -----------------
+    // ------------------- RecyclerView classes -----------------
 
     private class Adapter extends RecyclerView.Adapter<ViewHolder> {
         private Cursor mCursor;
