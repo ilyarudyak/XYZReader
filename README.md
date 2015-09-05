@@ -9,8 +9,8 @@ We use Roboto for everything except Logo. We use `Display1` style for Logo, `Hea
 | logo_text_view            | Display1        | auto            |
 | item_article_title        | Subhead         | auto            |
 | item_article_date_author  | Body2           | secondary_text  |
-| article_title             | Title.Inverse   | auto            |
-| article_byline            | Subhead.Inverse | auto            |
-| article_body              | Body1           | auto            |
+| detail_article_title      | Title.Inverse   | auto            |
+| detail_article_byline     | Subhead.Inverse | auto            |
+| detail_article_body       | Body1           | auto            |
 
 For Logo we use `UnifrakturMaguntia`. So our `Reader app` looks like a newspaper. We set font in a usual way - using `Typeface` in `java` code.
