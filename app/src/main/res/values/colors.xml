@@ -16,8 +16,21 @@
 -->
 
 <resources>
-    <color name="photo_placeholder">#ccc</color>
+    <!-- using the "Amber" Material Palette -->
+    <color name="primary">#ffc107</color>       <!-- 500 -->
+    <color name="primary_dark">#ffa000</color>  <!-- 700 -->
+    <color name="primary_light">#ffe082</color> <!-- 200 -->
+    <color name="accent">#ff3d00</color>        <!-- A400 Deep Orange -->
 
+    <!-- text colors -->
+    <color name="primary_text">#212121</color>  <!-- Black 87% -->
+    <color name="secondary_text">#757575</color><!-- Black 54% -->
+
+    <!-- standard colors-->
+    <color name="white">#ffffff</color>
+
+    <!-- old colors -->
+    <color name="photo_placeholder">#ccc</color>
     <color name="theme_primary">#04561A</color>
     <color name="theme_primary_dark">#04561A</color>
     <color name="theme_accent">#04561A</color>
