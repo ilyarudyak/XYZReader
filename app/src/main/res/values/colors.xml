@@ -20,11 +20,11 @@
     <color name="primary">#ffc107</color>       <!-- 500 -->
     <color name="primary_dark">#ffa000</color>  <!-- 700 -->
     <color name="primary_light">#ffe082</color> <!-- 200 -->
-    <color name="accent">#ffc400</color>        <!-- A200 -->
+    <color name="accent">#ff3d00</color>        <!-- A400 Deep Orange -->
 
     <!-- text colors -->
-    <color name="primary_text">#212121</color>
-    <color name="secondary_text">#727272</color>
+    <color name="primary_text">#212121</color>  <!-- Black 87% -->
+    <color name="secondary_text">#757575</color><!-- Black 54% -->
 
     <!-- standard colors-->
     <color name="white">#ffffff</color>
