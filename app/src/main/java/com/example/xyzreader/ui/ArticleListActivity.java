@@ -11,8 +11,8 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.support.v7.widget.Toolbar;
 import android.text.format.DateUtils;
 import android.view.View;
@@ -23,6 +23,8 @@ import com.example.xyzreader.R;
 import com.example.xyzreader.data.ArticleLoader;
 import com.example.xyzreader.data.ItemsContract;
 import com.example.xyzreader.data.UpdaterService;
+import com.example.xyzreader.ui.images.DynamicHeightNetworkImageView;
+import com.example.xyzreader.ui.images.ImageLoaderHelper;
 
 /**
  * An activity representing a list of Articles. This activity has different presentations for
@@ -107,10 +109,18 @@ public class ArticleListActivity extends AppCompatActivity implements
         Adapter adapter = new Adapter(cursor);
         adapter.setHasStableIds(true);
         mRecyclerView.setAdapter(adapter);
+
+        // phone - 2 columns, tablet - 3
         int columnCount = getResources().getInteger(R.integer.list_column_count);
-        StaggeredGridLayoutManager sglm =
+
+/*        StaggeredGridLayoutManager sglm =
                 new StaggeredGridLayoutManager(columnCount, StaggeredGridLayoutManager.VERTICAL);
-        mRecyclerView.setLayoutManager(sglm);
+        mRecyclerView.setLayoutManager(sglm);*/
+
+        GridLayoutManager glm = new GridLayoutManager(this, columnCount);
+        mRecyclerView.setLayoutManager(glm);
+
+
     }
 
     @Override
