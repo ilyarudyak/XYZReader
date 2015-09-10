@@ -8,13 +8,15 @@ import android.content.IntentFilter;
 import android.content.Loader;
 import android.database.Cursor;
 import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.text.format.DateUtils;
+import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -23,6 +25,7 @@ import com.example.xyzreader.R;
 import com.example.xyzreader.data.ArticleLoader;
 import com.example.xyzreader.data.ItemsContract;
 import com.example.xyzreader.data.UpdaterService;
+import com.example.xyzreader.ui.decoration.HorizontalDividerItemDecoration;
 import com.example.xyzreader.ui.images.DynamicHeightNetworkImageView;
 import com.example.xyzreader.ui.images.ImageLoaderHelper;
 
@@ -46,13 +49,17 @@ public class ArticleListActivity extends AppCompatActivity implements
 
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
 
+        // set as ActionBar, add navigation and menu
+        setToolbar();
+
+
         // set font for logo
         TextView logoTextView = (TextView) mToolbar.findViewById(R.id.logo_text_view);
         logoTextView.setTypeface(Typeface.createFromAsset(getResources().getAssets(), "UnifrakturMaguntia-Book.ttf"));
 
 //        final View toolbarContainerView = findViewById(R.id.toolbar_container);
 
-        mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_refresh_layout);
+//        mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_refresh_layout);
 
         mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         getLoaderManager().initLoader(0, null, this);
@@ -62,6 +69,26 @@ public class ArticleListActivity extends AppCompatActivity implements
         }
     }
 
+    // helper methods
+    private void setToolbar() {
+
+        // use Toolbar as an Action Bar replacement
+        setSupportActionBar(mToolbar);
+
+        // remove title - we use custom text field instead
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayShowTitleEnabled(false);
+        }
+    }
+
+    // ------------------------- menu ---------------------
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
 
     // ------------------------- service ---------------------
     @Override
@@ -84,7 +111,7 @@ public class ArticleListActivity extends AppCompatActivity implements
         public void onReceive(Context context, Intent intent) {
             if (UpdaterService.BROADCAST_ACTION_STATE_CHANGE.equals(intent.getAction())) {
                 mIsRefreshing = intent.getBooleanExtra(UpdaterService.EXTRA_REFRESHING, false);
-                updateRefreshingUI();
+//                updateRefreshingUI();
             }
         }
     };
@@ -93,9 +120,10 @@ public class ArticleListActivity extends AppCompatActivity implements
     private void refresh() {
         startService(new Intent(this, UpdaterService.class));
     }
-    private void updateRefreshingUI() {
+/*    private void updateRefreshingUI() {
         mSwipeRefreshLayout.setRefreshing(mIsRefreshing);
-    }
+    }*/
+
 
     // ------------------ loader methods ------------------
 
@@ -110,17 +138,13 @@ public class ArticleListActivity extends AppCompatActivity implements
         adapter.setHasStableIds(true);
         mRecyclerView.setAdapter(adapter);
 
-        // phone - 2 columns, tablet - 3
-        int columnCount = getResources().getInteger(R.integer.list_column_count);
+        // set layout manager
+        LinearLayoutManager llm = new LinearLayoutManager(this);
+        mRecyclerView.setLayoutManager(llm);
 
-/*        StaggeredGridLayoutManager sglm =
-                new StaggeredGridLayoutManager(columnCount, StaggeredGridLayoutManager.VERTICAL);
-        mRecyclerView.setLayoutManager(sglm);*/
-
-        GridLayoutManager glm = new GridLayoutManager(this, columnCount);
-        mRecyclerView.setLayoutManager(glm);
-
-
+        // set divider
+        Drawable divider = getResources().getDrawable(R.drawable.padded_divider);
+        mRecyclerView.addItemDecoration(new HorizontalDividerItemDecoration(divider));
     }
 
     @Override
