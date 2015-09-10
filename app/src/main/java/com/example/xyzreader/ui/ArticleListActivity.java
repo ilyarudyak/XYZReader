@@ -15,6 +15,7 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.text.format.DateUtils;
+import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -46,8 +47,9 @@ public class ArticleListActivity extends AppCompatActivity implements
 
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
 
-        // use Toolbar as an Action Bar replacement
-//        setSupportActionBar(mToolbar);
+        // set as ActionBar, add navigation and menu
+        setToolbar();
+
 
         // set font for logo
         TextView logoTextView = (TextView) mToolbar.findViewById(R.id.logo_text_view);
@@ -65,6 +67,26 @@ public class ArticleListActivity extends AppCompatActivity implements
         }
     }
 
+    // helper methods
+    private void setToolbar() {
+
+        // use Toolbar as an Action Bar replacement
+        setSupportActionBar(mToolbar);
+
+        // remove title - we use custom text field instead
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayShowTitleEnabled(false);
+        }
+    }
+
+    // ------------------------- menu ---------------------
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
 
     // ------------------------- service ---------------------
     @Override
@@ -99,6 +121,7 @@ public class ArticleListActivity extends AppCompatActivity implements
 /*    private void updateRefreshingUI() {
         mSwipeRefreshLayout.setRefreshing(mIsRefreshing);
     }*/
+
 
     // ------------------ loader methods ------------------
 
