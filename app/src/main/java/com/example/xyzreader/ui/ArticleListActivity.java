@@ -21,12 +21,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.android.volley.toolbox.NetworkImageView;
 import com.example.xyzreader.R;
 import com.example.xyzreader.data.ArticleLoader;
 import com.example.xyzreader.data.ItemsContract;
 import com.example.xyzreader.data.UpdaterService;
 import com.example.xyzreader.ui.decoration.HorizontalDividerItemDecoration;
-import com.example.xyzreader.ui.images.DynamicHeightNetworkImageView;
 import com.example.xyzreader.ui.images.ImageLoaderHelper;
 
 /**
@@ -134,9 +134,6 @@ public class ArticleListActivity extends AppCompatActivity implements
 
     @Override
     public void onLoadFinished(Loader<Cursor> cursorLoader, Cursor cursor) {
-        Adapter adapter = new Adapter(cursor);
-        adapter.setHasStableIds(true);
-        mRecyclerView.setAdapter(adapter);
 
         // set layout manager
         LinearLayoutManager llm = new LinearLayoutManager(this);
@@ -145,6 +142,14 @@ public class ArticleListActivity extends AppCompatActivity implements
         // set divider
         Drawable divider = getResources().getDrawable(R.drawable.padded_divider);
         mRecyclerView.addItemDecoration(new HorizontalDividerItemDecoration(divider));
+
+        Adapter adapter = new Adapter(cursor);
+        adapter.setHasStableIds(true);
+        mRecyclerView.setAdapter(adapter);
+
+
+
+
     }
 
     @Override
@@ -192,10 +197,14 @@ public class ArticleListActivity extends AppCompatActivity implements
                             DateUtils.FORMAT_ABBREV_ALL).toString()
                             + " by "
                             + mCursor.getString(ArticleLoader.Query.AUTHOR));
+
+            // we use setImageUrl() from volley lab to get an image into NetworkImageView
+            // we use 2 parameters: (a) url of an image; (b) loader to make this call;
             holder.thumbnailView.setImageUrl(
-                    mCursor.getString(ArticleLoader.Query.THUMB_URL),
+                    mCursor.getString(ArticleLoader.Query.THUMB_URL), // we download thumbnails
                     ImageLoaderHelper.getInstance(ArticleListActivity.this).getImageLoader());
-            holder.thumbnailView.setAspectRatio(mCursor.getFloat(ArticleLoader.Query.ASPECT_RATIO));
+
+//            holder.thumbnailView.setAspectRatio(mCursor.getFloat(ArticleLoader.Query.ASPECT_RATIO));
         }
 
         @Override
@@ -204,13 +213,14 @@ public class ArticleListActivity extends AppCompatActivity implements
         }
     }
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        public DynamicHeightNetworkImageView thumbnailView;
+        public NetworkImageView thumbnailView;
         public TextView titleView;
         public TextView subtitleView;
 
         public ViewHolder(View view) {
             super(view);
-            thumbnailView = (DynamicHeightNetworkImageView) view.findViewById(R.id.thumbnail);
+//            thumbnailView = (DynamicHeightNetworkImageView) view.findViewById(R.id.thumbnail);
+            thumbnailView = (NetworkImageView) view.findViewById(R.id.thumbnail);
             titleView = (TextView) view.findViewById(R.id.item_article_title);
             subtitleView = (TextView) view.findViewById(R.id.item_article_date_author);
         }

@@ -28,7 +28,10 @@ public class RemoteEndpointUtil {
         // get JSON string from Config.BASE_URL
         String itemsJson;
         try {
+
+            // network call using OkHttp
             itemsJson = fetchPlainText(Config.BASE_URL);
+
         } catch (IOException e) {
             Log.e(TAG, "Error fetching items JSON", e);
             return null;
@@ -50,7 +53,7 @@ public class RemoteEndpointUtil {
     }
 
     // helper methods
-    static String fetchPlainText(URL url) throws IOException {
+    private static String fetchPlainText(URL url) throws IOException {
 
         // this is 3d party library
         OkHttpClient client = new OkHttpClient();

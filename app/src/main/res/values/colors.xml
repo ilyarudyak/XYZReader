@@ -29,6 +29,9 @@
     <!-- standard colors-->
     <color name="white">#ffffff</color>
 
+    <!-- divider in recycler view -->
+    <color name="divider">#ffaaaaaa</color>
+
     <!-- old colors -->
     <color name="photo_placeholder">#ccc</color>
     <color name="theme_primary">#04561A</color>
