@@ -30,10 +30,10 @@ dependencies {
 
     // --------------- material design ---------------
 
-    // material design and widget libraries
+    // material design and widget libraries: Toolbar
     compile 'com.android.support:appcompat-v7:23.0.1'
 
-    //
+    // we use to get vibrant color from an image (ArticleDetailFragment)
     compile 'com.android.support:palette-v7:23.0.1'
 
     // we use this to create RecycleView (activity_article_list.xml)
