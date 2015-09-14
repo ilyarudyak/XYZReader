@@ -20,7 +20,7 @@
     <color name="primary">#ffc107</color>       <!-- 500 -->
     <color name="primary_dark">#ffa000</color>  <!-- 700 -->
     <color name="primary_light">#ffe082</color> <!-- 200 -->
-    <color name="accent">#00e5ff</color>        <!-- A400 Cyan -->
+    <color name="accent">#536dfe</color>        <!-- A200 Indigo -->
 
     <!-- text colors -->
     <color name="primary_text">#212121</color>  <!-- Black 87% -->
