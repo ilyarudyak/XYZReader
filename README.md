@@ -1,16 +1,17 @@
 # XYZReader
 Project 5 from Udacity nanodegree
 
-## Fonts
-We use Roboto for everything except Logo. We use `Display1` style for Logo, `Headline` for an article title on detail page, `Subhead` for a title on cards etc. In case of dark font we defined colors (`Black 87%` and `Black 54%`) but we use defaults. We use `style` attribute instead of `android` and `TextAppearance.AppCompat` instead of `TextAppearance.Material`.
+## Colors
+We use Amber colors for our mini palette. This is our fix to this user feedback:
+> Kagure says: “The color scheme is really sad and I shouldn't feel sad.”
 
-| id                          | style             | color             |
-| :-------------------------  |:----------------  | :---------------  |
-| `logo_text_view`            | `Display1`        | white             |
-| `item_article_title`        | `Subhead`         | auto              |
-| `item_article_date_author`  | `Body2`           | secondary_text    |
-| `detail_article_title`      | `Title.Inverse`   | auto              |
-| `detail_article_byline`     | `Subhead.Inverse` | auto              |
-| `detail_article_body`       | `Body1`           | auto              |
+We use `Indigo A200` as an accent color. We use Palette to get vibrant color from image on detail screen so we don't have single color on this screen. But all these colors are close to red so we can use `Indigo` as an accent.
 
-For Logo we use `UnifrakturMaguntia`. So our `Reader app` looks like a newspaper. We set font in a usual way - using `Typeface` in `java` code.
+## List screen
+1. We change from cards to simple list as per recommendations in class and guide to material [design](https://www.google.com/design/spec/components/cards.html#cards-usage): "A quickly scannable list, instead of cards, is an appropriate way to represent homogeneous content that doesn't have many actions.". We also add divider to this list - there is no default divider in `RecyclerView`.
+2. We don't use provided `DynamicHeightNetworkImageView` - it seems to preserve an image aspect ratio. We prefer to have all images displayed in the same size so we use `NetworkImageView` and `scaleType="centerCrop"`.
+3. We use standard `Roboto` font for text and `UnifrakturMaguntia-Book` for the Title. It's one of a recommended pattern from the class. Our reader with this font looks like a newspaper. The removed logo is used bold or black font weight. It can be associated with fat people and not healthy food.
+4. We make our toolbar as an action bar with `setSupportActionBar(mToolbar)` and add overflow menu. We use menu to add `Snackbar` upon click on `About`. We also wrap toolbar in `CollapsingToolbarLayout` and `AppBarLayout` to make it collapsible and work with `CoordinatorLayout`.
+
+## Detail screen
+
