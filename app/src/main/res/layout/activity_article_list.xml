@@ -10,7 +10,7 @@
     <android.support.design.widget.AppBarLayout
         android:id="@+id/app_bar_layout"
         android:layout_width="match_parent"
-        android:layout_height="160dp">
+        android:layout_height="200dp">
 
         <!-- wrap to make collapsible toolbar -->
         <!-- scroll flags: scroll but until reaches minHeight -->

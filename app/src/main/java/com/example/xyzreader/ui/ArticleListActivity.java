@@ -39,7 +39,6 @@ public class ArticleListActivity extends AppCompatActivity implements
 
     private CoordinatorLayout mCoordinatorLayout;
     private RecyclerView mRecyclerView;
-    private ArticleAdapter mArticleAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,9 +91,9 @@ public class ArticleListActivity extends AppCompatActivity implements
         Drawable divider = getResources().getDrawable(R.drawable.padded_divider);
         mRecyclerView.addItemDecoration(new HorizontalDividerItemDecoration(divider));
 
-        mArticleAdapter = new ArticleAdapter(cursor);
-        mArticleAdapter.setHasStableIds(true);
-        mRecyclerView.setAdapter(mArticleAdapter);
+        ArticleAdapter articleAdapter = new ArticleAdapter(cursor);
+        articleAdapter.setHasStableIds(true);
+        mRecyclerView.setAdapter(articleAdapter);
     }
     private void refresh() {
         startService(new Intent(this, UpdaterService.class));
@@ -133,7 +132,6 @@ public class ArticleListActivity extends AppCompatActivity implements
     public void onLoadFinished(Loader<Cursor> cursorLoader, Cursor cursor) {
         setArticleAdapter(cursor);
 
-//        mArticleAdapter.swapCursor(cursor);
     }
 
     @Override
@@ -199,11 +197,6 @@ public class ArticleListActivity extends AppCompatActivity implements
             return mCursor.getCount();
         }
 
-        // can we define this method and swap cursor in onLoadFinished()
-        // instead of calling setArticleAdapter(cursor) ?
-        public void swapCursor(Cursor mCursor) {
-            this.mCursor = mCursor;
-        }
     }
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public NetworkImageView thumbnailView;
