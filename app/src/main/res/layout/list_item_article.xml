@@ -14,7 +14,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginEnd="8dp"
             android:scaleType="centerCrop"
-            android:background="@color/photo_placeholder" />
+            android:background="@color/white" />
 
         <LinearLayout
             android:layout_width="match_parent"

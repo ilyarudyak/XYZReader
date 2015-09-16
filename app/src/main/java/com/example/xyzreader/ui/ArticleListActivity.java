@@ -1,10 +1,7 @@
 package com.example.xyzreader.ui;
 
 import android.app.LoaderManager;
-import android.content.BroadcastReceiver;
-import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.content.Loader;
 import android.database.Cursor;
 import android.graphics.Typeface;
@@ -12,7 +9,6 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -41,33 +37,29 @@ import com.example.xyzreader.ui.images.ImageLoaderHelper;
 public class ArticleListActivity extends AppCompatActivity implements
         LoaderManager.LoaderCallbacks<Cursor> {
 
-    private Toolbar mToolbar;
-    private RecyclerView mRecyclerView;
-
-    private SwipeRefreshLayout mSwipeRefreshLayout;
     private CoordinatorLayout mCoordinatorLayout;
+    private RecyclerView mRecyclerView;
+    private ArticleAdapter mArticleAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_article_list);
 
-        mToolbar = (Toolbar) findViewById(R.id.toolbar);
         mCoordinatorLayout = (CoordinatorLayout) findViewById(R.id.coordinator_layout);
+        mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
 
         // set as ActionBar, add navigation and menu
         setToolbar();
 
         // set font for logo
-        TextView logoTextView = (TextView) mCoordinatorLayout.findViewById(R.id.logo_text_view);
-        logoTextView.setTypeface(Typeface.createFromAsset(getResources().getAssets(), "UnifrakturMaguntia-Book.ttf"));
+        setFontForLogo();
 
-//        final View toolbarContainerView = findViewById(R.id.toolbar_container);
-
-//        mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_refresh_layout);
-
-        mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+        // initialize loader
         getLoaderManager().initLoader(0, null, this);
+
+        // set adapter for RecyclerView
+//        setArticleAdapter(null);
 
         if (savedInstanceState == null) {
             refresh();
@@ -75,7 +67,13 @@ public class ArticleListActivity extends AppCompatActivity implements
     }
 
     // helper methods
+    private void setFontForLogo() {
+        TextView logoTextView = (TextView) mCoordinatorLayout.findViewById(R.id.toolbar_logo_text_view);
+        logoTextView.setTypeface(Typeface.createFromAsset(getResources().getAssets(), "UnifrakturMaguntia-Book.ttf"));
+    }
     private void setToolbar() {
+
+        Toolbar mToolbar = (Toolbar) findViewById(R.id.toolbar);
 
         // use Toolbar as an Action Bar replacement
         setSupportActionBar(mToolbar);
@@ -85,9 +83,24 @@ public class ArticleListActivity extends AppCompatActivity implements
             getSupportActionBar().setDisplayShowTitleEnabled(false);
         }
     }
+    private void setArticleAdapter(Cursor cursor) {
+        // set layout manager
+        LinearLayoutManager llm = new LinearLayoutManager(this);
+        mRecyclerView.setLayoutManager(llm);
+
+        // set divider
+        Drawable divider = getResources().getDrawable(R.drawable.padded_divider);
+        mRecyclerView.addItemDecoration(new HorizontalDividerItemDecoration(divider));
+
+        mArticleAdapter = new ArticleAdapter(cursor);
+        mArticleAdapter.setHasStableIds(true);
+        mRecyclerView.setAdapter(mArticleAdapter);
+    }
+    private void refresh() {
+        startService(new Intent(this, UpdaterService.class));
+    }
 
     // ------------------------- menu ---------------------
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -109,41 +122,6 @@ public class ArticleListActivity extends AppCompatActivity implements
         return super.onOptionsItemSelected(item);
     }
 
-    // ------------------------- service ---------------------
-    @Override
-    protected void onStart() {
-        super.onStart();
-        registerReceiver(mRefreshingReceiver,
-                new IntentFilter(UpdaterService.BROADCAST_ACTION_STATE_CHANGE));
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        unregisterReceiver(mRefreshingReceiver);
-    }
-
-    private boolean mIsRefreshing = false;
-
-    private BroadcastReceiver mRefreshingReceiver = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            if (UpdaterService.BROADCAST_ACTION_STATE_CHANGE.equals(intent.getAction())) {
-                mIsRefreshing = intent.getBooleanExtra(UpdaterService.EXTRA_REFRESHING, false);
-//                updateRefreshingUI();
-            }
-        }
-    };
-
-    // helper methods
-    private void refresh() {
-        startService(new Intent(this, UpdaterService.class));
-    }
-/*    private void updateRefreshingUI() {
-        mSwipeRefreshLayout.setRefreshing(mIsRefreshing);
-    }*/
-
-
     // ------------------ loader methods ------------------
 
     @Override
@@ -153,22 +131,9 @@ public class ArticleListActivity extends AppCompatActivity implements
 
     @Override
     public void onLoadFinished(Loader<Cursor> cursorLoader, Cursor cursor) {
+        setArticleAdapter(cursor);
 
-        // set layout manager
-        LinearLayoutManager llm = new LinearLayoutManager(this);
-        mRecyclerView.setLayoutManager(llm);
-
-        // set divider
-        Drawable divider = getResources().getDrawable(R.drawable.padded_divider);
-        mRecyclerView.addItemDecoration(new HorizontalDividerItemDecoration(divider));
-
-        Adapter adapter = new Adapter(cursor);
-        adapter.setHasStableIds(true);
-        mRecyclerView.setAdapter(adapter);
-
-
-
-
+//        mArticleAdapter.swapCursor(cursor);
     }
 
     @Override
@@ -178,10 +143,10 @@ public class ArticleListActivity extends AppCompatActivity implements
 
     // ------------------- RecyclerView classes -----------------
 
-    private class Adapter extends RecyclerView.Adapter<ViewHolder> {
+    private class ArticleAdapter extends RecyclerView.Adapter<ViewHolder> {
         private Cursor mCursor;
 
-        public Adapter(Cursor cursor) {
+        public ArticleAdapter(Cursor cursor) {
             mCursor = cursor;
         }
 
@@ -228,7 +193,16 @@ public class ArticleListActivity extends AppCompatActivity implements
 
         @Override
         public int getItemCount() {
+            if(mCursor == null) {
+                return 0;
+            }
             return mCursor.getCount();
+        }
+
+        // can we define this method and swap cursor in onLoadFinished()
+        // instead of calling setArticleAdapter(cursor) ?
+        public void swapCursor(Cursor mCursor) {
+            this.mCursor = mCursor;
         }
     }
     public static class ViewHolder extends RecyclerView.ViewHolder {
