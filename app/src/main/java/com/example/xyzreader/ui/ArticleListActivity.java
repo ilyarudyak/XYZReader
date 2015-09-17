@@ -14,12 +14,14 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.text.format.DateUtils;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.NetworkImageView;
 import com.example.xyzreader.R;
 import com.example.xyzreader.data.ArticleLoader;
@@ -36,6 +38,8 @@ import com.example.xyzreader.ui.images.ImageLoaderHelper;
  */
 public class ArticleListActivity extends AppCompatActivity implements
         LoaderManager.LoaderCallbacks<Cursor> {
+
+    public static final String TAG = ArticleListActivity.class.getSimpleName();
 
     private CoordinatorLayout mCoordinatorLayout;
     private RecyclerView mRecyclerView;
@@ -57,10 +61,8 @@ public class ArticleListActivity extends AppCompatActivity implements
         // initialize loader
         getLoaderManager().initLoader(0, null, this);
 
-        // set adapter for RecyclerView
-//        setArticleAdapter(null);
-
         if (savedInstanceState == null) {
+            Log.d(TAG, "loading data...");
             refresh();
         }
     }
@@ -158,11 +160,11 @@ public class ArticleListActivity extends AppCompatActivity implements
         public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             View view = getLayoutInflater().inflate(R.layout.list_item_article, parent, false);
             final ViewHolder vh = new ViewHolder(view);
+
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    startActivity(new Intent(Intent.ACTION_VIEW,
-                            ItemsContract.Items.buildItemUri(getItemId(vh.getAdapterPosition()))));
+                    startActivity(getDetailIntent(vh));
                 }
             });
             return vh;
@@ -172,21 +174,13 @@ public class ArticleListActivity extends AppCompatActivity implements
         public void onBindViewHolder(ViewHolder holder, int position) {
             mCursor.moveToPosition(position);
             holder.titleView.setText(mCursor.getString(ArticleLoader.Query.TITLE));
-            holder.subtitleView.setText(
-                    DateUtils.getRelativeTimeSpanString(
-                            mCursor.getLong(ArticleLoader.Query.PUBLISHED_DATE),
-                            System.currentTimeMillis(), DateUtils.HOUR_IN_MILLIS,
-                            DateUtils.FORMAT_ABBREV_ALL).toString()
-                            + " by "
-                            + mCursor.getString(ArticleLoader.Query.AUTHOR));
+            holder.subtitleView.setText(getSubtitleText());
 
             // we use setImageUrl() from volley lab to get an image into NetworkImageView
             // we use 2 parameters: (a) url of an image; (b) loader to make this call;
-            holder.thumbnailView.setImageUrl(
-                    mCursor.getString(ArticleLoader.Query.THUMB_URL), // we download thumbnails
-                    ImageLoaderHelper.getInstance(ArticleListActivity.this).getImageLoader());
+            ImageLoader imageLoader = ImageLoaderHelper.getInstance(ArticleListActivity.this).getImageLoader();
+            holder.thumbnailView.setImageUrl(mCursor.getString(ArticleLoader.Query.THUMB_URL), imageLoader);
 
-//            holder.thumbnailView.setAspectRatio(mCursor.getFloat(ArticleLoader.Query.ASPECT_RATIO));
         }
 
         @Override
@@ -197,6 +191,21 @@ public class ArticleListActivity extends AppCompatActivity implements
             return mCursor.getCount();
         }
 
+        // helper methods
+        private String getSubtitleText() {
+            return DateUtils.getRelativeTimeSpanString(
+                    mCursor.getLong(ArticleLoader.Query.PUBLISHED_DATE),
+                    System.currentTimeMillis(), DateUtils.HOUR_IN_MILLIS,
+                    DateUtils.FORMAT_ABBREV_ALL).toString()
+                    + " by "
+                    + mCursor.getString(ArticleLoader.Query.AUTHOR);
+        }
+        private Intent getDetailIntent(ViewHolder vh) {
+            int position = vh.getAdapterPosition();
+            long id = getItemId(position);
+            return new Intent(Intent.ACTION_VIEW, ItemsContract.Items.buildItemUri(id));
+        }
+
     }
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public NetworkImageView thumbnailView;
@@ -205,7 +214,6 @@ public class ArticleListActivity extends AppCompatActivity implements
 
         public ViewHolder(View view) {
             super(view);
-//            thumbnailView = (DynamicHeightNetworkImageView) view.findViewById(R.id.thumbnail);
             thumbnailView = (NetworkImageView) view.findViewById(R.id.thumbnail);
             titleView = (TextView) view.findViewById(R.id.item_article_title);
             subtitleView = (TextView) view.findViewById(R.id.item_article_date_author);

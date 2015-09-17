@@ -9,7 +9,8 @@
     <android.support.design.widget.AppBarLayout
         android:id="@+id/app_bar_layout"
         android:layout_width="match_parent"
-        android:layout_height="200dp">
+        android:layout_height="200dp"
+        >
 
         <!-- wrap to make collapsible toolbar -->
         <!-- scroll flags: scroll but until reaches minHeight -->
@@ -18,7 +19,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
 
-            app:contentScrim="?attr/colorPrimary"
+            app:contentScrim="?colorPrimary"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
             <!-- pin flag: icons stay on screen-->
@@ -26,12 +27,10 @@
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
 
                 app:layout_collapseMode="pin"
-                >
 
-            </android.support.v7.widget.Toolbar>
+            />
 
             <ImageView
                 android:id="@+id/toolbar_image_view"

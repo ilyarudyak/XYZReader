@@ -70,7 +70,6 @@ public class ArticleDetailActivity extends AppCompatActivity
                 mStartId = ItemsContract.Items.getItemId(getIntent().getData());
             }
         }
-
     }
 
     // ----------------- loader callbacks -------------------
