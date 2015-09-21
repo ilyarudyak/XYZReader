@@ -155,7 +155,7 @@ public class ArticleDetailFragment extends Fragment implements
                         mVibrantColor = vs.getRgb();
                     }
 
-                    mRootView.findViewById(R.id.titleLinearLayout).setBackgroundColor(mVibrantColor);
+                    mRootView.findViewById(R.id.title_linear_layout).setBackgroundColor(mVibrantColor);
                     mToolbarImageView.setImageBitmap(imageContainer.getBitmap());
                 }
             }
