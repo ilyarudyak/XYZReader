@@ -2,15 +2,12 @@
 
     <!-- LINEAR LAYOUT -->
     <!-- dimens of CardView -->
-    <dimen name="list_cardview_width">480dp</dimen>
-    <dimen name="list_cardview_height">300dp</dimen>
+    <dimen name="list_cardview_width">420dp</dimen>
 
     <!--DETAIL LAYOUT-->
     <!-- dimens of CardView -->
-    <dimen name="detail_cardview_width">480dp</dimen>
-    <dimen name="detail_cardview_height">300dp</dimen>
+    <dimen name="detail_cardview_width">420dp</dimen>
 
-    <!-- DETAIL LAYOUT -->
     <!-- height of collapsing Toolbar -->
     <dimen name="detail_app_bar_layout_height">360dp</dimen>
 

@@ -6,20 +6,40 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <android.support.v7.widget.CardView
+        android:id="@+id/card_view"
+        android:layout_gravity="center"
+        android:layout_width="@dimen/list_cardview_width"
+        android:layout_height="match_parent"
+        card_view:cardCornerRadius="4dp"
+        >
+
+        <android.support.v7.widget.RecyclerView
+
+            android:id="@+id/recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            />
+
+    </android.support.v7.widget.CardView>
+
     <!-- wrap toolbar to work well with CoordinatorLayout -->
     <android.support.design.widget.AppBarLayout
         android:id="@+id/app_bar_layout"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/list_app_bar_layout_height">
+        android:layout_height="@dimen/list_app_bar_layout_height"
+        >
 
-        <!-- wrap to make collapsible toolbar -->
-        <!-- scroll flags: scroll but until reaches minHeight -->
+         <!--wrap to make collapsible toolbar -->
+         <!--scroll flags: scroll but until reaches minHeight -->
         <android.support.design.widget.CollapsingToolbarLayout
             android:id="@+id/collapsing_toolbar_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
 
-            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            >
 
             <!-- pin flag: icons stay on screen-->
             <android.support.v7.widget.Toolbar
@@ -37,7 +57,7 @@
                 android:id="@+id/toolbar_logo_text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
+                android:layout_gravity="bottom|center"
                 android:text="@string/app_name"
                 style="@style/TextAppearance.AppCompat.Display1"
                 android:textColor="@color/white"
@@ -47,28 +67,5 @@
 
         </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>
-
-    <android.support.v7.widget.CardView
-        android:id="@+id/card_view"
-        android:layout_gravity="center"
-        android:layout_width="@dimen/list_cardview_width"
-        android:layout_height="@dimen/list_cardview_height"
-        card_view:cardCornerRadius="4dp"
-
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        >
-
-        <android.support.v7.widget.RecyclerView
-            xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
-
-            android:id="@+id/recycler_view"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-
-
-            />
-
-    </android.support.v7.widget.CardView>
 
 </android.support.design.widget.CoordinatorLayout>

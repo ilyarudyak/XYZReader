@@ -35,3 +35,10 @@ recommendations but probably we'd prefer slightly increase images.
 2. We use background image with ratio 2:3 so we use `list_app_bar_layout_height=240` (based on Nexus 5 size). We use `72dp`
 left margin for logo as mentioned in guide. We use transparent `StatusBar` (we set it using `Theme.Bacon.Detail`) so we
 increase `detail_toolbar_height=80dp` (status bar 24dp + toolbar 56dp).
+
+## Phone - landscape
+We use expand pattern from *Adaptive UI* section of the guide. An example of this pattern - `Play` app. When we select a
+movie and rotate a screen we will see the same pattern. In other words we wrap our `Recycler View` or article into
+ card and put it on top of a toolbar. We don't use elevation like in class (with Sunshine) but rather simply delete
+ `app:layout_behavior` flags. We center logo so it will be revealed after scrolling. We use width of the card as a balance
+between readability (45-75 letters) and unused space.

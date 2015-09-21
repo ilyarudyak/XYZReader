@@ -70,7 +70,10 @@ public class ArticleListActivity extends AppCompatActivity implements
     // helper methods
     private void setFontForLogo() {
         TextView logoTextView = (TextView) mCoordinatorLayout.findViewById(R.id.toolbar_logo_text_view);
-        logoTextView.setTypeface(Typeface.createFromAsset(getResources().getAssets(), "UnifrakturMaguntia-Book.ttf"));
+        if (logoTextView != null) {
+            logoTextView.setTypeface(Typeface.createFromAsset(
+                    getResources().getAssets(), "UnifrakturMaguntia-Book.ttf"));
+        }
     }
     private void setToolbar() {
 
