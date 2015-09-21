@@ -8,7 +8,7 @@ We use Amber colors for our mini palette. This is our fix to this user feedback:
 We use `Indigo A200` as an accent color. We use Palette to get vibrant color from image on detail screen so we don't
 have single color on this screen. But all these colors are close to red so we can use `Indigo` as an accent.
 
-## List screen
+## Phone - List screen
 1. We change from cards to simple list as per recommendations in class and guide to material
 [design](https://www.google.com/design/spec/components/cards.html#cards-usage): "A quickly scannable list,
 instead of cards, is an appropriate way to represent homogeneous content that doesn't have many actions.".
@@ -30,5 +30,8 @@ sum of first 3 positions from *List with subheadings* (Status bar: 24dp Toolbar:
 [here](https://www.google.com/design/spec/layout/metrics-keylines.html#metrics-keylines-keylines-spacing). We follow provided
 recommendations but probably we'd prefer slightly increase images.
 
-## Detail screen
-
+## Phone - Detail screen
+1. We use the same approach as in the list screen: design library classes, collapsible toolbar with parallax effect etc.
+2. We use background image with ratio 2:3 so we use `list_app_bar_layout_height=240` (based on Nexus 5 size). We use `72dp`
+left margin for logo as mentioned in guide. We use transparent `StatusBar` (we set it using `Theme.Bacon.Detail`) so we
+increase `detail_toolbar_height=80dp` (status bar 24dp + toolbar 56dp).

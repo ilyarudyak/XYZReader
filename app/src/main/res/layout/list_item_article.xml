@@ -31,9 +31,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
 
-            android:paddingTop="@dimen/small_padding"
-            android:paddingStart="@dimen/small_padding"
-            android:paddingEnd="@dimen/standard_padding"
+            android:paddingTop="@dimen/item_title_padding_top"
+            android:paddingStart="@dimen/item_title_padding_left"
+            android:paddingEnd="@dimen/item_title_padding_right"
 
             android:ellipsize="end"
             android:maxLines="2" />
@@ -43,8 +43,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
 
-            android:paddingStart="@dimen/small_padding"
-            android:paddingEnd="@dimen/standard_padding"
+            android:paddingStart="@dimen/item_subtitle_padding_left"
+            android:paddingEnd="@dimen/item_subtitle_padding_right"
 
             style="@style/TextAppearance.AppCompat.Body1"
             android:textColor="@color/secondary_text"

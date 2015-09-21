@@ -4,8 +4,9 @@
     <!-- height of collapsing Toolbar -->
     <dimen name="list_app_bar_layout_height">152dp</dimen>
 
-    <!-- title padding from left -->
-    <dimen name="list_title_left_padding">16dp</dimen>
+    <!-- logo padding -->
+    <dimen name="list_logo_left_padding">16dp</dimen>
+    <dimen name="list_logo_padding_bottom">8dp</dimen>
 
 
     <!-- LIST ITEM LAYOUT -->
@@ -17,28 +18,31 @@
     <dimen name="item_thumbnail_margin_top">8dp</dimen>
     <dimen name="item_thumbnail_margin_bottom">8dp</dimen>
 
+    <!-- text padding -->
+    <dimen name="item_title_padding_left">8dp</dimen>
+    <dimen name="item_title_padding_right">16dp</dimen>
+    <dimen name="item_title_padding_top">8dp</dimen>
+    <dimen name="item_subtitle_padding_left">8dp</dimen>
+    <dimen name="item_subtitle_padding_right">16dp</dimen>
 
     <!-- DETAIL LAYOUT -->
     <!-- height of collapsing Toolbar -->
-    <dimen name="detail_app_bar_layout_height">192dp</dimen>
+    <dimen name="detail_app_bar_layout_height">240dp</dimen>
 
     <!-- logo padding and margin -->
     <dimen name="detail_logo_margin_left">72dp</dimen>
-    <dimen name="detail_logo_padding_bottom">16dp</dimen>
+    <dimen name="detail_logo_padding_bottom">8dp</dimen>
+
+    <!-- toolbar height -->
+    <dimen name="detail_toolbar_height">80dp</dimen>
 
     <!-- article title padding and margin-->
     <dimen name="detail_title_padding">16dp</dimen>
-    <dimen name="detail_title_margin_bottom">16dp</dimen>
 
     <!-- article text padding -->
     <dimen name="detail_text_padding">16dp</dimen>
 
     <!-- fab padding to fix bug -->
-    <dimen name="detail_fab_padding">16dp</dimen>
-
-
-    <!-- other padding & margins -->
-    <dimen name="standard_padding">16dp</dimen>
-    <dimen name="small_padding">8dp</dimen>
+    <dimen name="detail_fab_margin">16dp</dimen>
 
 </resources>
