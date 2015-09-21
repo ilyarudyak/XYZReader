@@ -1,22 +1,27 @@
 <resources>
 
-    <!-- padding & margins -->
-    <dimen name="standard_padding">16dp</dimen>
-    <dimen name="small_padding">8dp</dimen>
-
     <!-- LINEAR LAYOUT -->
     <!-- height of collapsing Toolbar -->
-    <dimen name="app_bar_layout_height">192dp</dimen>
+    <dimen name="list_app_bar_layout_height">152dp</dimen>
 
     <!-- title padding from left -->
-    <dimen name="title_left_padding">16dp</dimen>
+    <dimen name="list_title_left_padding">16dp</dimen>
 
-    <!-- thumbnail sizes -->
-    <dimen name="thumbnail_width">120dp</dimen>
-    <dimen name="thumbnail_height">80dp</dimen>
+
+    <!-- LIST ITEM LAYOUT -->
+    <!-- thumbnail sizes and margin -->
+    <dimen name="item_thumbnail_width">84dp</dimen>
+    <dimen name="item_thumbnail_height">56dp</dimen>
+    <dimen name="item_thumbnail_margin_left">16dp</dimen>
+    <dimen name="item_thumbnail_margin_right">8dp</dimen>
+    <dimen name="item_thumbnail_margin_top">8dp</dimen>
+    <dimen name="item_thumbnail_margin_bottom">8dp</dimen>
 
 
     <!-- DETAIL LAYOUT -->
+    <!-- height of collapsing Toolbar -->
+    <dimen name="detail_app_bar_layout_height">192dp</dimen>
+
     <!-- logo padding and margin -->
     <dimen name="detail_logo_margin_left">72dp</dimen>
     <dimen name="detail_logo_padding_bottom">16dp</dimen>
@@ -30,5 +35,10 @@
 
     <!-- fab padding to fix bug -->
     <dimen name="detail_fab_padding">16dp</dimen>
+
+
+    <!-- other padding & margins -->
+    <dimen name="standard_padding">16dp</dimen>
+    <dimen name="small_padding">8dp</dimen>
 
 </resources>

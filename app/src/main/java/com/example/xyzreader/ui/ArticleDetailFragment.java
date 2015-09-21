@@ -10,6 +10,7 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.ShareCompat;
 import android.support.v7.graphics.Palette;
+import android.support.v7.widget.Toolbar;
 import android.text.Html;
 import android.text.format.DateUtils;
 import android.util.Log;
@@ -40,6 +41,7 @@ public class ArticleDetailFragment extends Fragment implements
     private Cursor mCursor;
     private long mItemId;
     private View mRootView;
+    private Toolbar mToolbar;
 
     // we use vibrant color from an image instead of muted one
     // this is our primary color - we use it if no color provided by Palette
@@ -87,7 +89,7 @@ public class ArticleDetailFragment extends Fragment implements
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
 
-        mRootView = inflater.inflate(R.layout.fragment_article_detail_new, container, false);
+        mRootView = inflater.inflate(R.layout.fragment_article_detail, container, false);
         mToolbarImageView = (ImageView) mRootView.findViewById(R.id.toolbar_image_view);
 
         mRootView.findViewById(R.id.share_fab).setOnClickListener(new View.OnClickListener() {
@@ -173,6 +175,22 @@ public class ArticleDetailFragment extends Fragment implements
         TextView logoTextView = (TextView) mRootView.findViewById(R.id.toolbar_logo_text_view);
         logoTextView.setTypeface(Typeface.createFromAsset(getResources().getAssets(), "UnifrakturMaguntia-Book.ttf"));
     }
+    // a method to find height of the status bar
+    private int getStatusBarHeight() {
+        int result = 0;
+        int resourceId = getResources().getIdentifier("status_bar_height", "dimen", "android");
+        if (resourceId > 0) {
+            result = getResources().getDimensionPixelSize(resourceId);
+        }
+        return result;
+    }
+    private void setToolbarPaddingTop() {
+        mToolbar = (Toolbar) mRootView.findViewById(R.id.toolbar);
+        int padding = getStatusBarHeight();
+        Log.d(TAG, "padding=" + padding);
+        mToolbar.setPadding(0, padding, 0, 0);
+    }
+
 
     // ------------------- loader callbacks -------------------
 
