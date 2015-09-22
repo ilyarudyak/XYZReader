@@ -8,6 +8,8 @@
     <dimen name="list_logo_left_padding">16dp</dimen>
     <dimen name="list_logo_padding_bottom">8dp</dimen>
 
+    <!-- column number for RecyclerView -->
+    <integer name="column_number">1</integer>
 
     <!-- LIST ITEM LAYOUT -->
     <!-- thumbnail sizes and margin -->
@@ -24,6 +26,10 @@
     <dimen name="item_title_padding_top">8dp</dimen>
     <dimen name="item_subtitle_padding_left">8dp</dimen>
     <dimen name="item_subtitle_padding_right">16dp</dimen>
+
+    <!-- max number of columns -->
+    <integer name="item_max_number_columns_title">2</integer>
+    <integer name="item_max_number_columns_date_author">1</integer>
 
     <!-- DETAIL LAYOUT -->
     <!-- height of collapsing Toolbar -->

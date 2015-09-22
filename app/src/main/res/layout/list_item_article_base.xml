@@ -1,0 +1,37 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    >
+
+    <TextView
+        android:id="@+id/item_article_title"
+        style="@style/TextAppearance.AppCompat.Subhead"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:paddingTop="@dimen/item_title_padding_top"
+        android:paddingStart="@dimen/item_title_padding_left"
+        android:paddingEnd="@dimen/item_title_padding_right"
+
+        android:ellipsize="end"
+        android:maxLines="@integer/item_max_number_columns_title" />
+
+    <TextView
+        android:id="@+id/item_article_date_author"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:paddingStart="@dimen/item_subtitle_padding_left"
+        android:paddingEnd="@dimen/item_subtitle_padding_right"
+
+        style="@style/TextAppearance.AppCompat.Body1"
+        android:textColor="@color/secondary_text"
+
+        android:maxLines="@integer/item_max_number_columns_date_author"
+        android:singleLine="true"
+        android:ellipsize="end" />
+
+</LinearLayout>
+

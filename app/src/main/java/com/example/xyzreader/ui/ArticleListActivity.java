@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -43,6 +44,7 @@ public class ArticleListActivity extends AppCompatActivity implements
 
     private CoordinatorLayout mCoordinatorLayout;
     private RecyclerView mRecyclerView;
+    private int mColumnNumber;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +62,9 @@ public class ArticleListActivity extends AppCompatActivity implements
 
         // initialize loader
         getLoaderManager().initLoader(0, null, this);
+
+        // set column number
+        mColumnNumber = getResources().getInteger(R.integer.column_number);
 
         if (savedInstanceState == null) {
             Log.d(TAG, "loading data...");
@@ -88,13 +93,21 @@ public class ArticleListActivity extends AppCompatActivity implements
         }
     }
     private void setArticleAdapter(Cursor cursor) {
-        // set layout manager
-        LinearLayoutManager llm = new LinearLayoutManager(this);
-        mRecyclerView.setLayoutManager(llm);
 
-        // set divider
-        Drawable divider = getResources().getDrawable(R.drawable.padded_divider);
-        mRecyclerView.addItemDecoration(new HorizontalDividerItemDecoration(divider));
+        // set layout manager: linear for a phone and grid for a tablet
+        if (mColumnNumber == 1) {
+
+            LinearLayoutManager llm = new LinearLayoutManager(this);
+            mRecyclerView.setLayoutManager(llm);
+
+            // set divider
+            Drawable divider = getResources().getDrawable(R.drawable.padded_divider);
+            mRecyclerView.addItemDecoration(new HorizontalDividerItemDecoration(divider));
+
+        } else {
+            GridLayoutManager glm = new GridLayoutManager(this, mColumnNumber);
+            mRecyclerView.setLayoutManager(glm);
+        }
 
         ArticleAdapter articleAdapter = new ArticleAdapter(cursor);
         articleAdapter.setHasStableIds(true);
@@ -161,6 +174,7 @@ public class ArticleListActivity extends AppCompatActivity implements
 
         @Override
         public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+
             View view = getLayoutInflater().inflate(R.layout.list_item_article, parent, false);
             final ViewHolder vh = new ViewHolder(view);
 
