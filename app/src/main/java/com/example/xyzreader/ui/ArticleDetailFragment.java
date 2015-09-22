@@ -41,6 +41,7 @@ public class ArticleDetailFragment /*extends Fragment*/
     private Cursor mCursor;
     private long mItemId;
     private View mRootView;
+    private int mColumnNumber;
 
     // we use vibrant color from an image instead of muted one
     // this is our primary color - we use it if no color provided by Palette
@@ -66,6 +67,9 @@ public class ArticleDetailFragment /*extends Fragment*/
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // set column number
+        mColumnNumber = getResources().getInteger(R.integer.column_number);
 
         if (getArguments().containsKey(ARG_ITEM_ID)) {
             mItemId = getArguments().getLong(ARG_ITEM_ID);
@@ -110,10 +114,12 @@ public class ArticleDetailFragment /*extends Fragment*/
     public void onStart() {
         super.onStart();
 
-        // set dialog window size
-        int width = getResources().getDimensionPixelSize(R.dimen.dialog_width);
-        int height = getResources().getDimensionPixelSize(R.dimen.dialog_height);
-        getDialog().getWindow().setLayout(width, height);
+        if (mColumnNumber > 1) {
+            // set dialog window size
+            int width = getResources().getDimensionPixelSize(R.dimen.dialog_width);
+            int height = getResources().getDimensionPixelSize(R.dimen.dialog_height);
+            getDialog().getWindow().setLayout(width, height);
+        }
     }
 
     // helper methods
