@@ -6,6 +6,10 @@
         <item name="android:textSize">42dp</item>
     </style>
 
+    <style name="TextAppearance.Bacon.Title" parent="@style/TextAppearance.AppCompat.Title">
+        <item name="android:textSize">25dp</item>
+    </style>
+
     <style name="TextAppearance.Bacon.Subhead" parent="@style/TextAppearance.AppCompat.Subhead">
         <item name="android:textSize">20dp</item>
     </style>
@@ -13,5 +17,7 @@
     <style name="TextAppearance.Bacon.Body1" parent="@style/TextAppearance.AppCompat.Body1">
         <item name="android:textSize">18dp</item>
     </style>
+
+
 
 </resources>
