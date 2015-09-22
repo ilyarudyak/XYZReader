@@ -26,6 +26,7 @@
     <dimen name="item_title_padding_top">8dp</dimen>
     <dimen name="item_subtitle_padding_left">8dp</dimen>
     <dimen name="item_subtitle_padding_right">16dp</dimen>
+    <dimen name="item_subtitle_padding_bottom">0dp</dimen>
 
     <!-- max number of columns -->
     <integer name="item_max_number_columns_title">2</integer>

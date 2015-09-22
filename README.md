@@ -42,3 +42,10 @@ movie and rotate a screen we will see the same pattern. In other words we wrap o
  card and put it on top of a toolbar. We don't use elevation like in class (with Sunshine) but rather simply delete
  `app:layout_behavior` flags. We center logo so it will be revealed after scrolling. We use width of the card as a balance
 between readability (45-75 letters) and unused space.
+
+## Tablet
+1. We increase `list_app_bar_layout_height=168`. Again this is a sum of Status bar: 24dp Toolbar: 64dp
+Title and list items: 80dp.
+
+
+

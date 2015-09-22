@@ -39,7 +39,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
                 android:text="@string/app_name"
-                style="@style/TextAppearance.AppCompat.Display1"
+                style="@style/TextAppearance.Bacon.Display1"
                 android:textColor="@color/white"
                 android:paddingStart="@dimen/list_logo_left_padding"
                 android:paddingEnd="@dimen/list_logo_left_padding"

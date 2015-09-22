@@ -7,7 +7,7 @@
 
     <TextView
         android:id="@+id/item_article_title"
-        style="@style/TextAppearance.AppCompat.Subhead"
+        style="@style/TextAppearance.Bacon.Subhead"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
 
@@ -25,8 +25,9 @@
 
         android:paddingStart="@dimen/item_subtitle_padding_left"
         android:paddingEnd="@dimen/item_subtitle_padding_right"
+        android:paddingBottom="@dimen/item_subtitle_padding_bottom"
 
-        style="@style/TextAppearance.AppCompat.Body1"
+        style="@style/TextAppearance.Bacon.Body1"
         android:textColor="@color/secondary_text"
 
         android:maxLines="@integer/item_max_number_columns_date_author"

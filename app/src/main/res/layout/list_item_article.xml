@@ -14,7 +14,7 @@
 
         <include layout="@layout/list_item_article_base_image"/>
 
-        <include layout="@layout/list_item_article_base"/>
+        <include layout="@layout/list_item_article_base_text"/>
 
     </LinearLayout>
 

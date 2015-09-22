@@ -1,10 +1,32 @@
 <resources>
 
     <!-- LINEAR LAYOUT -->
+    <!-- height of collapsing Toolbar -->
+    <dimen name="list_app_bar_layout_height">168dp</dimen>
+
     <!-- column number for RecyclerView -->
-    <integer name="column_number">2</integer>
+    <integer name="column_number">3</integer>
+
+    <!-- logo padding -->
+    <dimen name="list_logo_left_padding">24dp</dimen>
+
+    <!-- card padding -->
+    <dimen name="list_card_padding">8dp</dimen>
 
     <!-- max number of columns -->
     <integer name="item_max_number_columns_title">4</integer>
+
+
+    <!-- LIST ITEM LAYOUT -->
+    <!-- thumbnail sizes and margin -->
+    <dimen name="item_thumbnail_width">184dp</dimen>
+    <dimen name="item_thumbnail_height">128dp</dimen>
+    <dimen name="item_thumbnail_margin_left">0dp</dimen>
+    <dimen name="item_thumbnail_margin_right">0dp</dimen>
+    <dimen name="item_thumbnail_margin_top">0dp</dimen>
+    <dimen name="item_thumbnail_margin_bottom">8dp</dimen>
+
+    <!-- text padding -->
+    <dimen name="item_subtitle_padding_bottom">8dp</dimen>
 
 </resources>

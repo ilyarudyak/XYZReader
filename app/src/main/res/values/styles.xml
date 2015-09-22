@@ -11,4 +11,14 @@
         <item name="android:statusBarColor">@android:color/transparent</item>
     </style>
 
+    <!-- override text appearance to increase font on tablet -->
+    <style name="TextAppearance.Bacon.Display1" parent="@style/TextAppearance.AppCompat.Display1">
+    </style>
+
+    <style name="TextAppearance.Bacon.Subhead" parent="@style/TextAppearance.AppCompat.Subhead">
+    </style>
+
+    <style name="TextAppearance.Bacon.Body1" parent="@style/TextAppearance.AppCompat.Body1">
+    </style>
+
 </resources>
