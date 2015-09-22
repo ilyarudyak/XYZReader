@@ -1,0 +1,12 @@
+<resources>
+
+    <!-- LINEAR LAYOUT -->
+    <!-- column number for RecyclerView -->
+    <integer name="column_number">4</integer>
+
+    <!-- LIST ITEM LAYOUT -->
+    <!-- thumbnail sizes and margin -->
+    <dimen name="item_thumbnail_width">230dp</dimen>
+    <dimen name="item_thumbnail_height">154dp</dimen>
+
+</resources>

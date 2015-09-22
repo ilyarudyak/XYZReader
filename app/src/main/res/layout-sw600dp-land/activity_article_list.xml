@@ -1,0 +1,61 @@
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/coordinator_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <!-- wrap toolbar to work well with CoordinatorLayout -->
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/app_bar_layout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/list_app_bar_layout_height">
+
+        <!-- wrap to make collapsible toolbar -->
+        <!-- scroll flags: scroll but until reaches minHeight -->
+        <android.support.design.widget.CollapsingToolbarLayout
+            android:id="@+id/collapsing_toolbar_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+            <!-- pin flag: icons stay on screen-->
+            <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+
+                app:layout_collapseMode="pin"
+                >
+
+            </android.support.v7.widget.Toolbar>
+
+            <TextView
+                android:id="@+id/toolbar_logo_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:text="@string/app_name"
+                style="@style/TextAppearance.Bacon.Display1"
+                android:textColor="@color/white"
+                android:paddingStart="@dimen/list_logo_left_padding"
+                android:paddingEnd="@dimen/list_logo_left_padding"
+                android:paddingBottom="@dimen/list_logo_padding_bottom"
+                />
+
+        </android.support.design.widget.CollapsingToolbarLayout>
+    </android.support.design.widget.AppBarLayout>
+
+    <!-- @string/appbar... flag: to prevent overlay of toolbar and content-->
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        />
+
+</android.support.design.widget.CoordinatorLayout>

@@ -46,6 +46,13 @@ between readability (45-75 letters) and unused space.
 ## Tablet
 1. We increase `list_app_bar_layout_height=168`. Again this is a sum of Status bar: 24dp Toolbar: 64dp
 Title and list items: 80dp.
+2. We increase fonts on a tablet using custom styles. We define `<style name="TextAppearance.Bacon.Display1"
+parent="@style/TextAppearance.AppCompat.Display1">` and override `<item name="android:textSize">42dp</item>`
+only for tablet layout. This approach let us use the same layout file both for phone and tablet layouts.
+3. We use `CardView` for tablet layout instead of a simple list. We use `<integer name="column_number">3</integer>`
+to manage number of columns in portrait and landscape. We also use this parameter to choose proper layout manager in
+`ArticleListActivity`. We use 3 columns for portrait and 4 for landscape.
+4. We define image sizes specifically for Nexus 5 and Nexus 7. Probably we have to be more generic especially for a tablet.
 
 
 
