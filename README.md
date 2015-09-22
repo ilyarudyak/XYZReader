@@ -53,6 +53,9 @@ only for tablet layout. This approach let us use the same layout file both for p
 to manage number of columns in portrait and landscape. We also use this parameter to choose proper layout manager in
 `ArticleListActivity`. We use 3 columns for portrait and 4 for landscape.
 4. We define image sizes specifically for Nexus 5 and Nexus 7. Probably we have to be more generic especially for a tablet.
+5. We use a dialog (adaptive ui pattern suggested in class) to show an article instead of traditional detail screen
+or 2-pane layout. This is kind of new pattern so there are a lot of questions: what sizes should be this fragment,
+how to use AppCombat.Dialog theme etc.
 
 
 
