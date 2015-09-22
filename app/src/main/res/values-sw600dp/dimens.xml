@@ -29,4 +29,8 @@
     <!-- text padding -->
     <dimen name="item_subtitle_padding_bottom">8dp</dimen>
 
+    <!-- DIALOG FRAGMENT -->
+    <dimen name="dialog_width">475dp</dimen>
+    <dimen name="dialog_height">500dp</dimen>
+
 </resources>

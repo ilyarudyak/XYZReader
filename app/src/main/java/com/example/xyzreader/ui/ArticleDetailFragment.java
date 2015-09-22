@@ -1,6 +1,6 @@
 package com.example.xyzreader.ui;
 
-import android.app.Fragment;
+import android.app.DialogFragment;
 import android.app.LoaderManager;
 import android.content.Intent;
 import android.content.Loader;
@@ -10,7 +10,6 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.ShareCompat;
 import android.support.v7.graphics.Palette;
-import android.support.v7.widget.Toolbar;
 import android.text.Html;
 import android.text.format.DateUtils;
 import android.util.Log;
@@ -31,8 +30,9 @@ import com.example.xyzreader.ui.images.ImageLoaderHelper;
  * either contained in a {@link ArticleListActivity} in two-pane mode (on
  * tablets) or a {@link ArticleDetailActivity} on handsets.
  */
-public class ArticleDetailFragment extends Fragment implements
-        LoaderManager.LoaderCallbacks<Cursor> {
+public class ArticleDetailFragment /*extends Fragment*/
+        extends DialogFragment
+        implements LoaderManager.LoaderCallbacks<Cursor> {
 
     private static final String TAG = "ArticleDetailFragment";
 
@@ -41,7 +41,6 @@ public class ArticleDetailFragment extends Fragment implements
     private Cursor mCursor;
     private long mItemId;
     private View mRootView;
-    private Toolbar mToolbar;
 
     // we use vibrant color from an image instead of muted one
     // this is our primary color - we use it if no color provided by Palette
@@ -105,6 +104,16 @@ public class ArticleDetailFragment extends Fragment implements
         bindViews();
 
         return mRootView;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        // set dialog window size
+        int width = getResources().getDimensionPixelSize(R.dimen.dialog_width);
+        int height = getResources().getDimensionPixelSize(R.dimen.dialog_height);
+        getDialog().getWindow().setLayout(width, height);
     }
 
     // helper methods
@@ -175,21 +184,7 @@ public class ArticleDetailFragment extends Fragment implements
         TextView logoTextView = (TextView) mRootView.findViewById(R.id.toolbar_logo_text_view);
         logoTextView.setTypeface(Typeface.createFromAsset(getResources().getAssets(), "UnifrakturMaguntia-Book.ttf"));
     }
-    // a method to find height of the status bar
-    private int getStatusBarHeight() {
-        int result = 0;
-        int resourceId = getResources().getIdentifier("status_bar_height", "dimen", "android");
-        if (resourceId > 0) {
-            result = getResources().getDimensionPixelSize(resourceId);
-        }
-        return result;
-    }
-    private void setToolbarPaddingTop() {
-        mToolbar = (Toolbar) mRootView.findViewById(R.id.toolbar);
-        int padding = getStatusBarHeight();
-        Log.d(TAG, "padding=" + padding);
-        mToolbar.setPadding(0, padding, 0, 0);
-    }
+
 
 
     // ------------------- loader callbacks -------------------

@@ -181,7 +181,8 @@ public class ArticleListActivity extends AppCompatActivity implements
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    startActivity(getDetailIntent(vh));
+//                    startActivity(getDetailIntent(vh));
+                    showDetailArticle(vh);
                 }
             });
             return vh;
@@ -221,6 +222,17 @@ public class ArticleListActivity extends AppCompatActivity implements
             int position = vh.getAdapterPosition();
             long id = getItemId(position);
             return new Intent(Intent.ACTION_VIEW, ItemsContract.Items.buildItemUri(id));
+        }
+        private void showDetailArticle(ViewHolder vh) {
+            if (mColumnNumber == 1) {
+                startActivity(getDetailIntent(vh));
+            } else {
+
+                int position = vh.getAdapterPosition();
+                long id = getItemId(position);
+                ArticleDetailFragment adf = ArticleDetailFragment.newInstance(id);
+                adf.show(getFragmentManager(), "sample");
+            }
         }
 
     }
